@@ -1,3 +1,4 @@
+#pragma once
 #include "Folder.h"
 #include <iostream>
 using namespace std;
