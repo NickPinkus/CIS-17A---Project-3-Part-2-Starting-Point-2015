@@ -11,6 +11,7 @@ int main()
 {
 	auto currentFolder = make_shared<Folder>("Root");
 	auto parentFolder = make_shared<Folder>();
+	auto rootpointer = currentFolder;
 	parentFolder = nullptr;
 	int choice = 0;
 	while (choice != -1) {
@@ -30,7 +31,10 @@ int main()
 		case 4: AddFolderMenu(currentFolder); break;
 		case 5: SearchForFile(currentFolder); break;
 		case 6: {
-			if (parentFolder != nullptr) {
+			if (parentFolder == currentFolder) {
+				currentFolder = rootpointer;
+				cout << endl << "Now in folder " << currentFolder->getName() << "!";
+			} else if (parentFolder != nullptr) {
 				currentFolder = parentFolder;
 				cout << endl << "Now in folder " << currentFolder->getName() << "!";
 			}
@@ -63,7 +67,9 @@ void DisplayMenu(shared_ptr<Folder> currentFolder, shared_ptr<Folder> parent)
 	cout << "3) Open" << endl;
 	cout << "4) Add sub folder" << endl;
 	cout << "5) Search For File" << endl;
-	if (parent != nullptr) {
+	if (parent == currentFolder) {
+		cout << "6) Return to [Root]";
+	} else if(parent != nullptr) {
 		cout << "6) Return to [" << parent->getName() << "]";
 	}
 	
