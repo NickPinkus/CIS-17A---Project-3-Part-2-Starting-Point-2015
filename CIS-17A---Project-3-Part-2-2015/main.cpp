@@ -102,17 +102,12 @@ void AddFolderMenu(shared_ptr<Folder> currentFolder)
 
 void SearchForFile(shared_ptr<Folder> currentFolder)
 {
-	//1. Prompt the user for a file name
-	//2. Search the current folder for the file
-	//3. Call Search method on current folder
-	//2a. Add method folder to search file
-
 	system("cls");
 	cout << "Search for file name: ";
 	string name;
 	cin >> name;
 	cin.ignore();
 
-	auto folder = currentFolder->FindFile(name);
+	auto findFile = currentFolder->FindFile(name);
 	system("pause");
 }
