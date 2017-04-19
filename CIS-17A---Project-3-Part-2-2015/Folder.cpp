@@ -7,7 +7,9 @@ Folder::Folder(std::string name) : _name(name)
 {
 }
 
-Folder::Folder(){}
+Folder::Folder()
+{
+}
 
 Folder::~Folder()
 {
@@ -55,25 +57,29 @@ std::shared_ptr<Folder> Folder::FindFolder(std::string name)
 	return nullptr;
 }
 
-std::shared_ptr<File> Folder::FindFile(std::string name)
+std::string Folder::FindFile(std::string name)
 {
+	std::string output;
+
+
 	for (auto file : _files)
 	{
-		if (file->getName() == name) {
-			cout << "File Found: " << name << endl
-				 << "Located in Folder: " << getName() << endl;
-			FindFolder(getName());
-			return file;
+		if (file->getName() == name && _files.size() != 0) {
+			output += "\nFile Found: " + name + "\n"
+				 + "Located in Folder: " + getName() + "\n";
+			return output;
 		}
 	}
 
 	for (auto folder : _folders)
 	{
 		auto file = folder->FindFile(name);
-		if (file != nullptr) 
+		if (file != "File Not Found") 
 		{
 			return file;
 		}
 	}
-	return nullptr;
+
+	output += "File Not Found";
+	return output;
 }

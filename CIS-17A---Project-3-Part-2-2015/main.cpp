@@ -61,17 +61,17 @@ shared_ptr<Folder> NavigateToFolder(shared_ptr<Folder> currentFolder)
 void DisplayMenu(shared_ptr<Folder> currentFolder, shared_ptr<Folder> parent)
 {
 	system("cls");
-	cout << "Now in " << currentFolder->getName() << endl;
-	cout << "*****************************************" << endl;
-	cout << "1) List folder contents" << endl;	
-	cout << "2) Add file to folder" << endl;
-	cout << "3) Open" << endl;
-	cout << "4) Add sub folder" << endl;
-	cout << "5) Search For File" << endl;
+	cout << "Now in " << currentFolder->getName()			<< endl;
+	cout << "*****************************************"		<< endl;
+	cout << "1) List folder contents"						<< endl;	
+	cout << "2) Add file to folder"							<< endl;
+	cout << "3) Open"										<< endl;
+	cout << "4) Add sub folder"								<< endl;
+	cout << "5) Search For File"							<< endl;
 	if (parent == currentFolder) {
-		cout << "6) Return to [Root]";
+		cout << "6) Return to [Root]"						<< endl;
 	} else if(parent != nullptr) {
-		cout << "6) Return to [" << parent->getName() << "]";
+		cout << "6) Return to [" << parent->getName() << "]" << endl;
 	}
 	
 }
@@ -108,6 +108,6 @@ void SearchForFile(shared_ptr<Folder> currentFolder)
 	cin >> name;
 	cin.ignore();
 
-	auto findFile = currentFolder->FindFile(name);
+	cout << currentFolder->FindFile(name) << endl;
 	system("pause");
 }
